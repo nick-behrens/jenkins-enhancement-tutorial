@@ -15,22 +15,6 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', artifactNumToKeepStr: '5'))
     }
-    environment {
-        NEXUS = credentials('nexus')
-        GITHUB = credentials('snapdocs-jenkins-token')
-        repository = "rumi-reporting"
-        buildID = consulUtils.getTagNumber("rumi-reporting")
-    }
-    parameters {
-        string(name: 'CRON_TYPE', defaultValue: null)
-    }
-    agent {
-        kubernetes {
-            label "rumi-reporting-build"
-            idleMinutes 5
-            yamlFile '.jenkins/sidecar-containers.yaml'
-        }
-    }
     stages {
         stage('print art'){
             steps {
