@@ -1,4 +1,4 @@
-library "jenkins-library"
+library "jenkins-library@no-ref-nick-jenkins-tutorial"
 
 pipeline {
     agent any
