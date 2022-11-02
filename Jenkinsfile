@@ -1,4 +1,4 @@
-library "jenkins-library"
+library "jenkins-library@no-ref-nick-jenkins-tutorial"
 
 pipeline {
     agent any
@@ -9,11 +9,7 @@ pipeline {
         stage('print art'){
             steps {
                 script {
-                    gitBranch = sh(
-                        script: "curl https://raw.githubusercontent.com/pi314/ascii-arts/master/octocat.asciiart",
-                        returnStdout: true
-                    ).trim()
-                    println "${gitBranch}"
+                    github.octocatComment()
                 }
             }
         }
